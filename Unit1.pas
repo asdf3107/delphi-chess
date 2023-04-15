@@ -584,21 +584,20 @@ begin
 
   p := dest_pos[strtoint (label3.Caption)];
 
-  if (p = 'P') and (strtoint (label2.Caption) in [1..8]) then // превращение пешки
-     begin
-      dest_pos [strtoint (label3.Caption)] := '0';
-      dest_pos [strtoint (label2.Caption)] := 'Q';
-      result := 'queen';
-     end
-    else
-     begin
-      dest_pos [strtoint (label3.Caption)] := '0';
-      dest_pos [strtoint (label2.Caption)] := p;
-     end;
-     
+  dest_pos [strtoint (label3.Caption)] := '0';
+  dest_pos [strtoint (label2.Caption)] := p;
+
       // допустимый ход
   if sl.IndexOf(dest_pos) <> -1 then 
     begin
+
+     if (p = 'P') and (strtoint (label2.Caption) in [1..8]) then // превращение пешки
+       begin
+        dest_pos [strtoint (label3.Caption)] := '0';
+        dest_pos [strtoint (label2.Caption)] := 'Q';
+        result := 'queen';
+       end;
+
      edit1.Text := dest_pos; 
      history := true; 
      display (edit1.text);
